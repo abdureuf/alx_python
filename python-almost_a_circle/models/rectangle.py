@@ -3,7 +3,6 @@ import the the class Base from the package models.base.
 """
 from models.base import Base
 
-
 class Rectangle(Base):
     """
     Rectangle class.
@@ -122,3 +121,27 @@ class Rectangle(Base):
         if value < 0:
             raise ValueError("Y must be >= 0.")
         self.__y = value
+    def area(self):
+        """
+           Returns the area of the Rectangle instance.
+           The area is calculated by multiplying the width and height of the rectangle.
+        """
+        return self.__width * self.__height    
+
+    def display(self):
+        for _ in range(self.__y):
+          print(" ")
+        for _ in range(self.__height):
+         print(" " * self.__x + "#" * self.__width)
+    def __str__(self):
+        """
+           Returns a string representation of the Rectangle instance.
+           The string has the format '[Rectangle] (<id>) <x>/<y> - <width>/<height>'.
+        """
+        return "[Rectangle] ({}) {}/{} - {}/{}".format(self.id, self.x, self.y, self.width, self.height)        
+
+
+
+
+
+
