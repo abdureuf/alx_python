@@ -129,6 +129,11 @@ class Rectangle(Base):
         return self.__width * self.__height    
 
     def display(self):
+        """
+             Prints a visual representation of the Rectangle instance.
+             Prints the rectangle by repeating the '#' character 'self.__width' times for each row,
+             repeating the rows 'self.__height' times, and taking into account the 'x' and 'y' coordinates.
+        """
         for _ in range(self.__y):
           print(" ")
         for _ in range(self.__height):
