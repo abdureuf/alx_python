@@ -20,6 +20,7 @@ class Square(Rectangle):
        """
     
        super().__init__(size, size, x, y, id)
+       
 
     def __str__(self):
         """
@@ -46,5 +47,9 @@ class Square(Rectangle):
         Args:
             value (int): The size of the square.
         """
+        if not isinstance(value, int):
+            raise TypeError("width must be an integer.")
+        if (self.width==self.height) :
+            raise ValueError("The size must be equal.")
         self.width = value
         self.height = value
