@@ -27,11 +27,23 @@ class Rectangle(Base):
         """
         from super class import value
         """
-        self.__width = None
-        self.__height = None
-        self.__x = None
-        self.__y = None
+        if not isinstance(width, int):
+            raise TypeError("Width must be an integer.")
+        if not isinstance(height, int):
+            raise TypeError("Height must be an integer.")
+        if not isinstance(x, int):
+            raise TypeError("X must be an integer.")
+        if not isinstance(y, int):
+            raise TypeError("Y must be an integer.")
         
+        if width <= 0:
+            raise ValueError("Width must be > 0.")
+        if height <= 0:
+            raise ValueError("Height must be > 0.")
+        if x < 0:
+            raise ValueError("X must be >= 0.")
+        if y < 0:
+            raise ValueError("Y must be >= 0.")
         self.width = width
         self.height = height
         self.x = x
