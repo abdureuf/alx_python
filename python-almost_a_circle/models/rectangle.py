@@ -28,26 +28,28 @@ class Rectangle(Base):
         from super class import value
         """
         if not isinstance(width, int):
-            raise TypeError("Width must be an integer.")
+            raise TypeError("width must be an integer.")
         if not isinstance(height, int):
-            raise TypeError("Height must be an integer.")
+            raise TypeError("height must be an integer.")
         if not isinstance(x, int):
-            raise TypeError("X must be an integer.")
+            raise TypeError("x must be an integer.")
         if not isinstance(y, int):
-            raise TypeError("Y must be an integer.")
-        
+            raise TypeError("y must be an integer.")
+
         if width <= 0:
-            raise ValueError("Width must be > 0.")
+            raise ValueError("width must be > 0.")
         if height <= 0:
-            raise ValueError("Height must be > 0.")
+            raise ValueError("height must be > 0.")
         if x < 0:
-            raise ValueError("X must be >= 0.")
+            raise ValueError("x must be >= 0.")
         if y < 0:
-            raise ValueError("Y must be >= 0.")
-        self.width = width
-        self.height = height
-        self.x = x
-        self.y = y
+            raise ValueError("y must be >= 0.")
+
+        self.__width = width
+        self.__height = height
+        self.__x = x
+        self.__y = y
+        # self.id = id
 
     @property
     def width(self):
