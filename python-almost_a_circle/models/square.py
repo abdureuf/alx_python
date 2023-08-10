@@ -4,6 +4,11 @@ import the the class Rectangle from the package models.rectangle.
 from models.rectangle import Rectangle
 
 class Square(Rectangle):
+    """
+    The class name Square that inheretes from Rectangle class.
+    it contains __init__method,setter and getter methods.
+
+    """
     def __init__(self, size, x=0, y=0, id=None):
        """
          Initializes a Square instance.
