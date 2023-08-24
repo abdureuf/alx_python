@@ -4,7 +4,6 @@ import system and mysqldb
 import sys
 import MySQLdb
 
-
 def list_states(username, password, database):
     """
      method that hvae 3 arguments
@@ -35,7 +34,6 @@ def list_states(username, password, database):
     cursor.close()
     conn.close()
 
-
 if __name__ == '__main__':
     # Get the MySQL username, password, and database name from command-line arguments
     username = sys.argv[1]
@@ -44,3 +42,5 @@ if __name__ == '__main__':
 
     # Call the function to list the states
     list_states(username, password, database)
+
+    #blank line
