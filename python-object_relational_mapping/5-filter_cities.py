@@ -18,7 +18,10 @@ def list_cities_by_state(username, password, database, state_name):
     # Create a cursor object to execute SQL queries
     cursor = conn.cursor()
 
-    # Create the SQL query to select cities of the specified state and order by id
+    """
+     Create the SQL query to select cities of the
+     specified state and order by id
+    """
     query = """
         SELECT cities.name
         FROM cities
@@ -37,6 +40,8 @@ def list_cities_by_state(username, password, database, state_name):
     if rows:
         city_names = ', '.join(row[0] for row in rows)
         print(city_names)
+    else:
+        print("some")    
 
     # Close the cursor and connection
     cursor.close()
