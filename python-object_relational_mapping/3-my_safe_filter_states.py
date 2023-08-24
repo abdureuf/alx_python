@@ -1,3 +1,6 @@
+"""
+MySQL injections by using parameterized queries
+"""
 import sys
 import MySQLdb
 
@@ -19,16 +22,11 @@ def search_states(username, password, database, state_name):
     # Create a cursor object to execute SQL queries
     cursor = conn.cursor()
 
-    # Create the SQL query with the user input using format
-    query = """
-        SELECT *
-        FROM states
-        WHERE BINARY name = '{}'
-        ORDER BY id ASC
-    """.format(state_name)
+    # Create the SQL query with a parameter placeholder
+    query = "SELECT * FROM states WHERE BINARY name = %s ORDER BY id ASC"
 
-    # Execute the query
-    cursor.execute(query)
+    # Execute the query with the state_name as a parameter
+    cursor.execute(query, (state_name,))
 
     # Fetch all rows from the result set
     rows = cursor.fetchall()
