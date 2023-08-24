@@ -6,46 +6,51 @@ def list_cities_by_state(username, password, database, state_name):
     """
     Lists all cities of a specific state from the specified database.
     """
-    # Connect to the MySQL server
-    conn = MySQLdb.connect(
-        host='localhost',
-        port=3306,
-        user=username,
-        passwd=password,
-        db=database
-    )
+    try: 
+        # Connect to the MySQL server
+        conn = MySQLdb.connect(
+            host='localhost',
+            port=3306,
+            user=username,
+            passwd=password,
+            db=database
+        )
 
-    # Create a cursor object to execute SQL queries
-    cursor = conn.cursor()
+        # Create a cursor object to execute SQL queries
+        cursor = conn.cursor()
 
-    """
-     Create the SQL query to select cities of the
-     specified state and order by id
-    """
-    query = """
-        SELECT cities.name
-        FROM cities
-        JOIN states ON cities.state_id = states.id
-        WHERE states.name = %s
-        ORDER BY cities.id ASC
-    """
+        """
+        Create the SQL query to select cities of the
+        specified state and order by id
+        """
+        query = """
+            SELECT cities.name
+            FROM cities
+            JOIN states ON cities.state_id = states.id
+            WHERE states.name = %s
+            ORDER BY cities.id ASC
+        """
 
-    # Execute the query with the state name as a parameter
-    cursor.execute(query, (state_name,))
+        # Execute the query with the state name as a parameter
+        cursor.execute(query, (state_name,))
 
-    # Fetch all rows from the result set
-    rows = cursor.fetchall()
+        # Fetch all rows from the result set
+        rows = cursor.fetchall()
 
-    # Display the results
-    if rows:
-        city_names = ', '.join(row[0] for row in rows)
-        print(city_names)
-    else:
-        print(" ")
+        # Display the results
+        if rows:
+            city_names = ', '.join(row[0] for row in rows)
+            print(city_names)
+        else:
+            print("")
 
-    # Close the cursor and connection
-    cursor.close()
-    conn.close()
+        # Close the cursor and connection
+        cursor.close()
+        conn.close()
+    except MySQLdb.Error as e:
+        print(f"{e}")
+    except Exception as e:
+        print(f"{e}")    
 
 if __name__ == '__main__':
     """
