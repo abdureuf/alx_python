@@ -4,7 +4,8 @@ import MySQLdb
 
 def search_states(username, password, database, state_name):
     """
-    Searches the states table for matching state names and displays the results.
+    Searches the states table for matching
+    state names and displays the results.
     """
     # Connect to the MySQL server
     conn = MySQLdb.connect(
@@ -20,10 +21,10 @@ def search_states(username, password, database, state_name):
 
     # Create the SQL query with the user input using format
     query = """
-          SELECT * 
-          FROM states 
-          WHERE name = '{}' 
-          ORDER BY id ASC
+        SELECT * 
+        FROM states 
+        WHERE BINARY name = '{}' 
+        ORDER BY id ASC
     """.format(state_name)
 
     # Execute the query
@@ -53,5 +54,3 @@ if __name__ == '__main__':
 
     # Call the function to search and display matching states
     search_states(username, password, database, state_name)
-
-    
