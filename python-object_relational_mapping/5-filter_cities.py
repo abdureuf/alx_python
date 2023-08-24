@@ -41,7 +41,7 @@ def list_cities_by_state(username, password, database, state_name):
         city_names = ', '.join(row[0] for row in rows)
         print(city_names)
     else:
-        print("some")    
+        print(" ")
 
     # Close the cursor and connection
     cursor.close()
