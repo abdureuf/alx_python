@@ -1,7 +1,3 @@
-#!/usr/bin/python3
-"""
-Lists all State objects from the database hbtn_0e_6_usa
-"""
 import sys
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -22,14 +18,13 @@ if __name__ == "__main__":
     # Create a session
     session = Session()
 
-    """
-     Query all State objects and sort them by
-     id in ascending order
-    """
-    states = session.query(State).order_by(State.id).all()
+    # Query the first State object
+    state = session.query(State).order_by(State.id).first()
 
-    # Display the results
-    for state in states:
+    # Check if a state is found
+    if state is None:
+        print("Nothing")
+    else:
         print("{}: {}".format(state.id, state.name))
 
     # Close the session
