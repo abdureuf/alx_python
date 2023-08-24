@@ -4,18 +4,19 @@ import system and mysqldb
 import sys
 import MySQLdb
 
+
 def list_states(username, password, database):
     """
      method that hvae 3 arguments
     """
     # Connect to the MySQL server
     conn = MySQLdb.connect(
-        host='localhost',
-        port=3306,
-        user=username,
-        passwd=password,
-        db=database
-    )
+    host='localhost',
+    port=3306,
+    user=username,
+    passwd=password,
+    db=database
+)
 
     # Create a cursor object to execute SQL queries
     cursor = conn.cursor()
@@ -43,4 +44,4 @@ if __name__ == '__main__':
     # Call the function to list the states
     list_states(username, password, database)
 
-    #blank line
+    
