@@ -7,8 +7,9 @@ def safe_print_division(a, b):
         print("Inside result: {}".format(result))
         return result
     
-    print("Inside result: {}".format(result))
-    return result
+    finally:  
+        print("Inside result: {}".format(result))
+        return result
 
 a = 12
 b = 2
