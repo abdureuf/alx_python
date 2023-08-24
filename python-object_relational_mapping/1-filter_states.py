@@ -47,6 +47,6 @@ if __name__ == '__main__':
     password = sys.argv[2]
     database = sys.argv[3]
 
-    # Call the function to list states starting with N
+    # Call the function to list states starting with N(upper case)
     list_states_with_n(username, password, database)
 
