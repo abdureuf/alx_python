@@ -37,7 +37,10 @@ def list_states(username, password, database):
 
 
 if __name__ == '__main__':
-    # Get the MySQL username, password, and database name from command-line arguments
+    """
+    Get the MySQL username, password, 
+    and database name from command-line arguments
+    """
     username = sys.argv[1]
     password = sys.argv[2]
     database = sys.argv[3]
