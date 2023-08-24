@@ -20,7 +20,7 @@ def list_cities_by_state(username, password, database, state_name):
 
     # Create the SQL query to select cities of the specified state and order by id
     query = """
-        SELECT cities.id, cities.name, states.name
+        SELECT cities.name
         FROM cities
         JOIN states ON cities.state_id = states.id
         WHERE states.name = %s
@@ -34,13 +34,13 @@ def list_cities_by_state(username, password, database, state_name):
     rows = cursor.fetchall()
 
     # Display the results
-    for row in rows:
-        print(row)
+    if rows:
+        city_names = ', '.join(row[0] for row in rows)
+        print(city_names)
 
     # Close the cursor and connection
     cursor.close()
     conn.close()
-
 
 if __name__ == '__main__':
     """
