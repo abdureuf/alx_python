@@ -4,9 +4,10 @@ import system and mysqldb
 import sys
 import MySQLdb
 
+
 def list_states(username, password, database):
     """
-    create methods that pass 3 arguments.
+     method that hvae 3 arguments
     """
     # Connect to the MySQL server
     conn = MySQLdb.connect(
@@ -33,6 +34,7 @@ def list_states(username, password, database):
     # Close the cursor and connection
     cursor.close()
     conn.close()
+
 
 if __name__ == '__main__':
     # Get the MySQL username, password, and database name from command-line arguments
