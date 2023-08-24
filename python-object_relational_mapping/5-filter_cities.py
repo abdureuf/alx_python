@@ -6,7 +6,7 @@ def list_cities_by_state(username, password, database, state_name):
     """
     Lists all cities of a specific state from the specified database.
     """
-    try: 
+    try:
         # Connect to the MySQL server
         conn = MySQLdb.connect(
             host='localhost',
@@ -50,7 +50,7 @@ def list_cities_by_state(username, password, database, state_name):
     except MySQLdb.Error as e:
         print(f"{e}")
     except Exception as e:
-        print(f"{e}")    
+        print(f"{e}")
 
 if __name__ == '__main__':
     """
