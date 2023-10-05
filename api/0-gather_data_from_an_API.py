@@ -1,5 +1,5 @@
-import sys
 import requests
+import sys
 
 def get_employee_todo_progress(employee_id):
     # Get employee details
@@ -30,4 +30,3 @@ if __name__ == "__main__":
 
     employee_id = int(sys.argv[1])
     get_employee_todo_progress(employee_id)
-    
