@@ -2,39 +2,30 @@ import csv
 import requests
 import sys
 
-def user_info(id):
-    """
-    Retrieve and display the user information.
-    """
-    # Get user details
-    user_url = f"https://jsonplaceholder.typicode.com/users/{id}"
-    response = requests.get(user_url)
-    user_data = response.json()
-    username = user_data['username']
+if len(sys.argv) != 2:
+    print("Usage: python3 1-export_to_CSV.py <employee_id>")
+    sys.exit(1)
 
-    # Get user's TODO list
-    todos_url = f"https://jsonplaceholder.typicode.com/users/{id}/todos"
-    response = requests.get(todos_url)
-    todos_data = response.json()
+employee_id = sys.argv[1]
 
-    # Prepare CSV filename
-    filename = f"{id}.csv"
+# Fetch employee details
+employee_response = requests.get(f"https://jsonplaceholder.typicode.com/users/{employee_id}")
+employee_data = employee_response.json()
+employee_name = employee_data.get("name")
 
-    # Write TODO list to CSV
-    with open(filename, 'w', newline='') as csvfile:
-        writer = csv.writer(csvfile)
-        writer.writerow(["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
-        for todo in todos_data:
-            completed = todo["completed"]
-            title = todo["title"]
-            writer.writerow([id, username, completed, title])
+# Fetch TODO list for the employee
+todos_response = requests.get(f"https://jsonplaceholder.typicode.com/users/{employee_id}/todos")
+todos_data = todos_response.json()
 
-    print("Number of tasks in CSV: OK")
+# Calculate completed tasks
+completed_tasks = [task for task in todos_data if task.get("completed")]
 
-if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python3 main_0.py <user_id>")
-        sys.exit(1)
+# Export data to CSV file
+filename = f"{employee_id}.csv"
+with open(filename, mode="w", newline="") as file:
+    writer = csv.writer(file)
+    writer.writerow(["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
+    for task in completed_tasks:
+        writer.writerow([employee_id, employee_name, task.get("completed"), task.get("title")])
 
-    user_id = int(sys.argv[1])
-    user_info(user_id)
+print(f"Data exported to {filename} successfully.")
