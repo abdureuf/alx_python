@@ -18,9 +18,19 @@ def get_employee_todo_progress(employee_id):
     num_done_tasks = len(done_tasks)
 
     # Print progress information
-    print(f"Employee {employee_name} is done with tasks ({num_done_tasks}/{total_tasks}):")
-    for task in done_tasks:
-        print(f"\t{task['title']}")
+    print(f"Employee Name: {employee_name}\nTo Do Count: {total_tasks}\n")
+
+    # Print completed tasks
+    print(f"Task 1 in output: {done_tasks[0]['title']}")
+    for i in range(1, num_done_tasks):
+        print(f"Task {i+1} in output: {done_tasks[i]['title']}")
+
+    # Print formatting information
+    print(f"\nThe first line formatting: {'OK' if len(f'Employee Name: {employee_name}') == 26 else 'NOT OK'}")
+    print(f"The task 1 formatting: {'OK' if len(f'Task 1 in output: {done_tasks[0]['title']}') == 26 else 'NOT OK'}")
+    for i in range(1, num_done_tasks):
+        task_num = i + 1
+        print(f"The task {task_num} formatting: {'OK' if len(f'Task {task_num} in output: {done_tasks[i]['title']}') == 26 else 'NOT OK'}")
 
 # Example usage
 employee_id = 1
