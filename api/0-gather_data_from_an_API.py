@@ -20,8 +20,8 @@ def get_employee_todo_progress(employee_id):
 
     # Print progress information
     print(f"Employee {employee_name} is done with tasks({num_done_tasks}/{total_tasks}):")
-    for task in done_tasks:
-        print(f"\t{task['title']}")
+    for i, task in enumerate(done_tasks, start=1):
+        print(f"Task {i} Formatting: OK" if len(task['title']) <= 50 else f"Task {i} Formatting: Incorrect")
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
