@@ -1,37 +1,36 @@
-import requests
 import sys
-import json
+import requests
+import csv
 
-if len(sys.argv) != 2:
-    print("Usage: python3 2-export_to_JSON.py <employee_id>")
-    sys.exit(1)
+def gather_data(employee_id):
+    # Fetch employee details
+    employee_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
+    employee_response = requests.get(employee_url)
+    employee_data = employee_response.json()
+    employee_name = employee_data.get("username")
 
-employee_id = sys.argv[1]
+    # Fetch employee's TODO list
+    todos_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}/todos"
+    todos_response = requests.get(todos_url)
+    todos_data = todos_response.json()
 
-# Fetch employee details
-employee_response = requests.get(f"https://jsonplaceholder.typicode.com/users/{employee_id}")
-employee_data = employee_response.json()
-employee_name = employee_data.get("username")
+    # Export data to CSV file
+    filename = f"{employee_id}.csv"
+    with open(filename, mode='w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
+        for task in todos_data:
+            task_id = task.get("id")
+            task_title = task.get("title")
+            task_completed = task.get("completed")
+            writer.writerow([employee_id, employee_name, task_completed, task_title])
 
-# Fetch TODO list for the employee
-todos_response = requests.get(f"https://jsonplaceholder.typicode.com/users/{employee_id}/todos")
-todos_data = todos_response.json()
+    print(f"Data exported to {filename} successfully.")
 
-# Prepare data for JSON export
-export_data = {employee_id: []}
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: python3 export_to_CSV.py [employee_id]")
+        sys.exit(1)
 
-for task in todos_data:
-    export_data[employee_id].append(
-        {
-            "task": task.get("title"),
-            "completed": task.get("completed"),
-            "username": employee_name
-        }
-    )
-
-# Export data to JSON file
-filename = f"{employee_id}.json"
-with open(filename, mode="w") as file:
-    json.dump(export_data, file)
-
-print(f"Data exported to {filename} successfully.")
+    employee_id = int(sys.argv[1])
+    gather_data(employee_id)
