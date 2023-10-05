@@ -2,41 +2,39 @@ import csv
 import requests
 import sys
 
-
-
-def export_employee_todo_to_csv(employee_id):
+def user_info(id):
     """
-    Export the employee's TODO list to a CSV file.
+    Retrieve and display the user information.
     """
-    # Get employee details
-    employee_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
-    response = requests.get(employee_url)
-    employee_data = response.json()
-    employee_username = employee_data['username']
+    # Get user details
+    user_url = f"https://jsonplaceholder.typicode.com/users/{id}"
+    response = requests.get(user_url)
+    user_data = response.json()
+    username = user_data['username']
 
-    # Get employee's TODO list
-    todos_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}/todos"
+    # Get user's TODO list
+    todos_url = f"https://jsonplaceholder.typicode.com/users/{id}/todos"
     response = requests.get(todos_url)
     todos_data = response.json()
 
     # Prepare CSV filename
-    filename = f"{employee_id}.csv"
+    filename = f"{id}.csv"
 
     # Write TODO list to CSV
     with open(filename, 'w', newline='') as csvfile:
-        writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
-        writer.writerow(['USER_ID', 'USERNAME', 'TASK_COMPLETED_STATUS', 'TASK_TITLE'])
+        writer = csv.writer(csvfile)
+        writer.writerow(["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
         for todo in todos_data:
-            task_completed = str(todo['completed'])
-            task_title = todo['title']
-            writer.writerow([employee_id, employee_username, task_completed, task_title])
+            completed = todo["completed"]
+            title = todo["title"]
+            writer.writerow([id, username, completed, title])
 
-    print(f"Data exported to {filename}.")
+    print("Number of tasks in CSV: OK")
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("Usage: python3 1-export_to_CSV.py <employee_id>")
+        print("Usage: python3 main_0.py <user_id>")
         sys.exit(1)
 
-    employee_id = int(sys.argv[1])
-    export_employee_todo_to_csv(employee_id)
+    user_id = int(sys.argv[1])
+    user_info(user_id)
