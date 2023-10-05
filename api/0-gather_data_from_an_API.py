@@ -1,3 +1,4 @@
+import sys
 import requests
 
 def get_employee_todo_progress(employee_id):
@@ -18,9 +19,15 @@ def get_employee_todo_progress(employee_id):
     num_done_tasks = len(done_tasks)
 
     # Print progress information
-    print(f"[Got]\nEmployee Name: {employee_name:<18}\n(18 chars long)")
+    print(f"Employee {employee_name} is done with tasks({num_done_tasks}/{total_tasks}):")
+    for task in done_tasks:
+        print(f"\t{task['title']}")
 
-# Example usage
-employee_id = 1
-get_employee_todo_progress(employee_id)
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: python3 gather_data_from_an_API.py <employee_id>")
+        sys.exit(1)
 
+    employee_id = int(sys.argv[1])
+    get_employee_todo_progress(employee_id)
+    
