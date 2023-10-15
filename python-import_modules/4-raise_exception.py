@@ -1,7 +1,10 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
+
 def raise_exception():
-    raise TypeError("")
-try:
-    raise_exception()
-except TypeError as te:
-    print("Exception has been raised")
+    raise TypeError
+
+def handle_exception():
+    try:
+        raise_exception()
+    except TypeError as te:
+        return "Exception has been raised"
