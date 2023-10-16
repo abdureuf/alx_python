@@ -7,5 +7,5 @@ class BaseGeometry:
     BaseGeometry is an empty class.
     """
     def __init_subclass__(cls):
-        pass
-    pass
+        raise NotImplementedError
+    # pass
