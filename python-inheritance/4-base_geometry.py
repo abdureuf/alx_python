@@ -6,11 +6,14 @@ class BaseGeometry:
     """
     BaseGeometry is a class with an area method that raises an exception.
     """
-    def __init_subclass__(cls):
+    def __dir__(self):
         """
-        pass.
+        Customizes the behavior of dir() method.
         """
-        pass
+        attrs = set(dir(type(self))) | set(self.__dict__) | set(dir(BaseGeometry))
+        attrs = attrs - {'__init_subclass__'}  # Exclude '__init_subclass__' method
+        return sorted(attrs)
+
     def area(self):
         """
         Raises an exception when called.
