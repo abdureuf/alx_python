@@ -6,10 +6,7 @@ class BaseGeometry:
     """
     BaseGeometry is a class with area and integer_validator methods.
     """
-    def __dir__(self):
-        """
-        Customizes the behavior of dir() method.
-        """
+    
     def area(self):
         """
         Raises an exception when called.
