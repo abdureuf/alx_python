@@ -6,6 +6,8 @@ class BaseGeometry:
     """
     BaseGeometry is an empty class.
     """
-    def __init_subclass__(cls):
-        raise NotImplementedError
+    def __dir__(self):
+        """
+        Customizes the behavior of dir() method.
+        """
     pass
