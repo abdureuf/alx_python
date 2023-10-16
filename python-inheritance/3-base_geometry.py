@@ -14,8 +14,8 @@ class BaseGeometry:
         attrs = attrs - {'__init_subclass__'}  # Exclude '__init_subclass__' method
         return sorted(attrs)
 
-    def area(self):
-        """
-        Raises an exception when called.
-        """
-        raise Exception("area() is not implemented")
+    # def area(self):
+    #     """
+    #     Raises an exception when called.
+    #     """
+    #     raise Exception("area() is not implemented")
