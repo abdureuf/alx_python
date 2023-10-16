@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""
+no import
+"""
 class Square:
     """
     Square class represents a square shape.
