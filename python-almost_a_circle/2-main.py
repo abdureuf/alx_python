@@ -23,7 +23,7 @@ class Rectangle(Base):
         """
         super().__init__(id)
         if not isinstance(width, int):
-            raise TypeError("width must be an integer")
+            raise TypeError
         self.width = width
         self.height = height
         self.x = x
