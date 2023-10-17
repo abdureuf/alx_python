@@ -2,7 +2,14 @@
 """
 This module defines the Rectangle class.
 """
-from .5-base_geometry import BaseGeometry
+import importlib
+
+BaseGeometry = importlib.import_module('5-base_geometry').BaseGeometry
+
+# class Rectangle(BaseGeometry):
+#     def __init__(self, width, height):
+#         self.__width = self.integer_validator("width", width)
+#         self.__height = self.integer_validator("height", height)
 
 class Rectangle(BaseGeometry):
     """
