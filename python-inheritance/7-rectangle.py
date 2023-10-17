@@ -13,7 +13,7 @@ class BaseGeometry:
         """
         attrs = set(dir(type(self))) | set(self.__dict__) | set(dir(BaseGeometry))
         attrs = attrs - {'__init_subclass__'}
-        attrs = [attr for attr in attrs if not attr.startswith('__')]  # Exclude attributes starting with '__'
+        attrs = [attr for attr in attrs if not attr.startswith('__')]
         return sorted(attrs)
 
     def area(self):
