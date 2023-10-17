@@ -22,14 +22,12 @@ class Rectangle(Base):
             id (int): The id of the rectangle (default: None).
         """
         super().__init__(id)
-        try:
-            self.width = width
-        except TypeError:
-            print("ok")
-        else:
-            self.height = height
-            self.x = x
-            self.y = y
+        if not isinstance(width, int):
+            raise TypeError("width must be an integer")
+        self.width = width
+        self.height = height
+        self.x = x
+        self.y = y
     @property
     def width(self):
         """
