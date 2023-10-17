@@ -3,9 +3,9 @@
 This module defines the Rectangle class.
 """
 
-import importlib
+# import importlib
 
-BaseGeometry = importlib.import_module('5-base_geometry').BaseGeometry
+# BaseGeometry = importlib.import_module('5-base_geometry').BaseGeometry
 
 
 class Rectangle(BaseGeometry):
