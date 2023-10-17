@@ -23,12 +23,24 @@ class BaseGeometry:
 
     def integer_validator(self, name, value):
         """
-        Validates the value as an integer.
+        Validates the value as an integer and returns the validated value.
+
+        Args:
+            name (str): The name of the value.
+            value (int): The value to be validated.
+
+        Returns:
+            int: The validated value.
+
+        Raises:
+            TypeError: If the value is not an integer.
+            ValueError: If the value is less than or equal to 0.
         """
         if not isinstance(value, int):
             raise TypeError("{} must be an integer".format(name))
         if value <= 0:
             raise ValueError("{} must be greater than 0".format(name))
+        return value
 
 class Rectangle(BaseGeometry):
     """
