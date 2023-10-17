@@ -3,11 +3,6 @@
 This module defines the Rectangle class.
 """
 
-# import importlib
-
-# BaseGeometry = importlib.import_module('5-base_geometry').BaseGeometry
-
-
 class BaseGeometry:
     """
     BaseGeometry is a class with area and integer_validator methods.
@@ -34,6 +29,8 @@ class BaseGeometry:
             raise TypeError("{} must be an integer".format(name))
         if value <= 0:
             raise ValueError("{} must be greater than 0".format(name))
+
+
 class Rectangle(BaseGeometry):
     """
     Rectangle is a class that inherits from BaseGeometry.
@@ -50,4 +47,4 @@ class Rectangle(BaseGeometry):
         Returns a string representation of the Rectangle instance.
         """
         return "[Rectangle] {}/{}".format(self.__width, self.__height)
-    
+
