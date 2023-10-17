@@ -1,10 +1,11 @@
 #!/usr/bin/python3
-"""
-This module defines the Rectangle class.
-"""
+
 import importlib
 
 BaseGeometry = importlib.import_module('5-base_geometry').BaseGeometry
+"""
+This module defines the Rectangle class.
+"""
 
 # class Rectangle(BaseGeometry):
 #     def __init__(self, width, height):
