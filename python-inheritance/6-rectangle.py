@@ -2,7 +2,7 @@
 """
 This module defines the Rectangle class.
 """
-# import BaseGeometry
+from .5-base_geometry import BaseGeometry
 
 class Rectangle(BaseGeometry):
     """
