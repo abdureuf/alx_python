@@ -12,7 +12,8 @@ class BaseGeometry:
         Customizes the behavior of dir() method.
         """
         attrs = set(dir(type(self))) | set(self.__dict__) | set(dir(BaseGeometry))
-        attrs = attrs - {'__init_subclass__'}  # Exclude '__init_subclass__' method
+        attrs = attrs - {'__init_subclass__'}
+        attrs = [attr for attr in attrs if not attr.startswith('__')]
         return sorted(attrs)
 
     def area(self):
